@@ -97,6 +97,7 @@
 					</div><!-- /.navbar-collapse -->
 				</div>
 			</nav>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 		<div class="table-responsive">
 			<h1>Biodata Saya dari Array</h1>
 			<table class="table table-hover">
@@ -115,8 +116,69 @@
 				</tbody>
 			</table>
 		</div>
+		</div>	
+
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div class="table-responsive">
+				<h1>Biodata Saya dari Object</h1>
+				<table class="table table-hover">
+					<tbody>
+						<?php foreach ($biodata_object as $key) { ?>
+						<tr>
+							<td><?php echo $key->nama ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $key->nim ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $key->alamat ?></td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
 		</div>
 
+<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div class="table-responsive">
+				<h1>Biodata dari Query Builder Array</h1>
+				<table class="table table-hover">
+					<tbody>
+						<?php foreach ($biodatabuilder_array as $key) {?>
+						<tr>
+							<td><?php echo $key['nama']?></td>
+						</tr>
+						<tr>
+							<td><?php echo $key['nim']?></td>
+						</tr>
+						<tr>
+							<td><?php echo $key['alamat']?></td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div class="table-responsive">
+				<h1>Biodata dari Query Builder Object</h1>
+				<table class="table table-hover">
+					<tbody>
+						<?php foreach ($biodatabuilder_object as $key) {?>
+						<tr>
+							<td><?php echo $key->nama ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $key->nim ?></td>
+						</tr>
+						<tr>
+							<td><?php echo $key->alamat ?></td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
