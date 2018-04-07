@@ -26,6 +26,13 @@ class Home extends CI_Controller {
 		$this->load->view('news');
 	}
 
+		public function blog()
+	{
+		$this->load->model('blog');
+		$data['blog_load']=$this->blog->getBlogQueryArray();
+		$this->load->view('blog', $data);
+	}
+
 	function __construct(){
 		parent::__construct();
 			$this->load->helper('url');

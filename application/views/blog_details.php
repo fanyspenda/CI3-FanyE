@@ -1,47 +1,10 @@
 <!DOCTYPE html>
 <html lang="">
 	<head>
-		<style type="text/css">
-			code {
-				font-family: Consolas, Monaco, Courier New, Courier, monospace;
-				font-size: 12px;
-				background-color: #f9f9f9;
-				border: 1px solid #D0D0D0;
-				color: #002166;
-				display: block;
-				margin: 14px 0 14px 0;
-				padding: 12px 10px 12px 10px;
-			}
-			body {
-				background-color: #fff;
-				margin: 40px;
-				font: 13px/20px normal Helvetica, Arial, sans-serif;
-				color: #4F5155;
-			}
-			#body {
-				margin: 0 15px 0 15px;
-			}
-
-			p.footer {
-				text-align: right;
-				font-size: 11px;
-				border-top: 1px solid #D0D0D0;
-				line-height: 32px;
-				padding: 0 10px 0 10px;
-				margin: 20px 0 0 0;
-			}
-
-			#container {
-				margin: 10px;
-				border: 1px solid #D0D0D0;
-				box-shadow: 0 0 8px #D0D0D0;
-			}
-
-		</style>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Home</title>
+		<title>Title Page</title>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -54,6 +17,7 @@
 		<![endif]-->
 	</head>
 	<body>
+		<!-- Begin of Navbar -->
 		<div class="container-fluid">
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -71,7 +35,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
+							<li><a href="<?php echo site_url('home')?>">Home</a></li>
 							<li><a href="<?php echo site_url('home/news')?>">News</a></li>
 							<li><a href="<?php echo site_url('home/about')?>">About</a></li>
 							<li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>		
@@ -93,93 +57,59 @@
 									<li><a href="#">Separated link</a></li>
 								</ul>
 							</li>
-							<li><a href="<?php echo site_url('home/blog')?>">Blog</a></li>
+							<li class="active"><a href="<?php echo site_url('home/blog')?>">Blog</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div>
 			</nav>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<div class="table-responsive">
-			<h1>Biodata Saya dari Array</h1>
-			<table class="table table-hover">
-				<tbody>
-					<?php foreach ($biodata_array as $key) { ?>
-					<tr>
-						<td> <?php echo $key['nama']?></td>
-					</tr>
-					<tr>
-						<td> <?php echo $key['nim']?></td>
-					</tr>
-					<tr>
-						<td> <?php echo $key['alamat']?></td>
-					</tr>
-					<?php } ?>
-				</tbody>
-			</table>
-		</div>
-		</div>	
-
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<div class="table-responsive">
-				<h1>Biodata Saya dari Object</h1>
-				<table class="table table-hover">
-					<tbody>
-						<?php foreach ($biodata_object as $key) { ?>
-						<tr>
-							<td><?php echo $key->nama ?></td>
-						</tr>
-						<tr>
-							<td><?php echo $key->nim ?></td>
-						</tr>
-						<tr>
-							<td><?php echo $key->alamat ?></td>
-						</tr>
-						<?php } ?>
-					</tbody>
-				</table>
+			<!-- end of navbar-->
+			<!-- begin of Bs3-carousel-->
+			<div class="container-fluid">
+				<div id="carousel-id" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-id" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel-id" data-slide-to="1" class=""></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="item active">
+							<img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide" src="<?php echo base_url('/assets/img/gambar1.jpg');?>" style = "width: 100%; height: 50% "> 
+							<div class="container">
+								<div class="carousel-caption">
+									<h1>Slide 1 Gambar</h1>
+									<p>Percobaan Menggunakan Bootstrap Carousel</p>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide" src="<?php echo base_url('/assets/img/gambar2.jpg');?>" style = "width: 100%; height: 50% ">
+							<div class="container">
+								<div class="carousel-caption">
+									<h1>Slide 2 Gambar</h1>
+									<p>Percobaan Menggunakan Bootstrap Carousel</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+					<a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+				</div>
 			</div>
 		</div>
-
-<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<div class="table-responsive">
-				<h1>Biodata dari Query Builder Array</h1>
-				<table class="table table-hover">
-					<tbody>
-						<?php foreach ($biodatabuilder_array as $key) {?>
-						<tr>
-							<td><?php echo $key['nama']?></td>
-						</tr>
-						<tr>
-							<td><?php echo $key['nim']?></td>
-						</tr>
-						<tr>
-							<td><?php echo $key['alamat']?></td>
-						</tr>
-						<?php } ?>
-					</tbody>
-				</table>
+		<!--end of bs3 Carousel-->
+		<h1 class="text-center">Hello World</h1>
+		<!--Beginning of Box-->
+		<div class="container">
+			<div class="row">
+	    		<div class="col-sm-4">
+		    		<div class="panel panel-primary">
+		        		<div class="panel-heading">Testing Link</div>
+				        <div class="panel-body"><img src="#" class="img-responsive" style='width:100%; height: 200px' alt="Image"></div>
+				        <div class="panel-footer">coba-coba</div>
+		      		</div>
+		    	</div>
 			</div>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<div class="table-responsive">
-				<h1>Biodata dari Query Builder Object</h1>
-				<table class="table table-hover">
-					<tbody>
-						<?php foreach ($biodatabuilder_object as $key) {?>
-						<tr>
-							<td><?php echo $key->nama ?></td>
-						</tr>
-						<tr>
-							<td><?php echo $key->nim ?></td>
-						</tr>
-						<tr>
-							<td><?php echo $key->alamat ?></td>
-						</tr>
-						<?php } ?>
-					</tbody>
-				</table>
-			</div>
-		</div>
+		</div><br>
+		<!--end of box-->
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
