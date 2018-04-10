@@ -14,5 +14,9 @@ class Blog extends CI_Model
 		return $query->result_array();
 	}
 
+	public function getByID($id)
+	{
+		return $this->db->query(" SELECT * FROM blog WHERE id='".$id."' ")->row();
+	}
 }
 ?>

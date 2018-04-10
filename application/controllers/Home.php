@@ -28,13 +28,38 @@ class Home extends CI_Controller {
 
 		public function blog()
 	{
-		$this->load->model('blog');
 		$data['blog_load']=$this->blog->getBlogQueryArray();
 		$this->load->view('blog', $data);
+	}
+
+	public function detail()
+	{
+		$cek = $this->input->post('id');
+		$data['xxx'] = $this->blog->getByID($cek);
+		$this->load->view('blog_details', $data);
+		/*echo json_encode($data);*/
+	}
+
+	public function tes()
+	{
+		$this->load->view('blog_details');
+	}
+
+	public function uploadBaru()
+	{
+		$data['content']	='blogCreate.php';
+		$this->load->view('blogCreate.php',$data);
+	}
+
+	public function tambah()
+	{
+		$key = $this->input->post("id");
+		
 	}
 
 	function __construct(){
 		parent::__construct();
 			$this->load->helper('url');
+			$this->load->model('blog');
 	}
 }

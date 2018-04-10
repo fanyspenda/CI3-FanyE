@@ -38,7 +38,7 @@
 							<li><a href="<?php echo site_url('home')?>">Home</a></li>
 							<li><a href="<?php echo site_url('home/news')?>">News</a></li>
 							<li><a href="<?php echo site_url('home/about')?>">About</a></li>
-							<li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>		
+							<li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>
 						</ul>
 						<form class="navbar-form navbar-left" role="search">
 							<div class="form-group">
@@ -47,7 +47,7 @@
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#">Link</a></li>
+							<li><a href="<?php echo base_url('home/uploadBaru')?>">Upload Artikel Baru</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 								<ul class="dropdown-menu">
@@ -63,61 +63,37 @@
 				</div>
 			</nav>
 			<!-- end of navbar-->
-			<!-- begin of Bs3-carousel-->
-			<div class="container-fluid">
-				<div id="carousel-id" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-id" data-slide-to="0" class="active"></li>
-						<li data-target="#carousel-id" data-slide-to="1" class=""></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="item active">
-							<img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide" src="<?php echo base_url('/assets/img/gambar1.jpg');?>" style = "width: 100%; height: 50% "> 
-							<div class="container">
-								<div class="carousel-caption">
-									<h1>Slide 1 Gambar</h1>
-									<p>Percobaan Menggunakan Bootstrap Carousel</p>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide" src="<?php echo base_url('/assets/img/gambar2.jpg');?>" style = "width: 100%; height: 50% ">
-							<div class="container">
-								<div class="carousel-caption">
-									<h1>Slide 2 Gambar</h1>
-									<p>Percobaan Menggunakan Bootstrap Carousel</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-					<a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-				</div>
-			</div>
-		</div>
-		<!--end of bs3 Carousel-->
-		
+		<h1 class="text-center">Hello World</h1>
 		<!--Beginning of Box-->
-		<div class="container" style="margin-top: 20px;">
-			<div class="row">
-	    		<div class="col-sm-12">
-		    		<div class="panel panel-primary">
-		        		<div class="panel-heading"><?php echo $xxx->title; ?></div>
-				        <div class="panel-body">
-							<?php 
-								$dirName = '/assets/imgDatabase/';
-		        				$fileName = $xxx->image_file;
-		        				$imageUrl = $dirName . $fileName; 
-		        			?>
-				        	<img src="<?php echo base_url($imageUrl) ?>" class="img-responsive" style='width:1920px; height: 750px' alt="Image">
-				        </div>
-				        <div class="panel-footer"><?php echo $xxx->author; ?></div>
-				        <div class="panel-footer"><?php echo $xxx->content; ?></div>
-		      		</div>
-		    	</div>
-			</div>
-		</div><br>
 		<!--end of box-->
+		<form action="" method="POST" role="form">
+			<legend>FORM TAMBAH DATA</legend>
+		
+			<div class="form-group">
+				<label for="">ID</label>
+				<input type="text" class="form-control" id="id" placeholder="ID Artikel" required="required">
+			</div>
+			<div class="form-group">
+				<label for="">Judul Artikel</label>
+				<input type="text" class="form-control" id="judul" placeholder="Judul artikel" required="required">
+			</div>
+			<div class="form-group">
+				<label for="">Author</label>
+				<input type="text" class="form-control" id="author" placeholder="Author" required="required">
+			</div>
+			<div class="form-group">
+				<label for="">Tanggal</label>
+				<input type="date" class="form-control" id="tanggal" placeholder="Tanggal Hari Ini" required="required">
+			</div>
+			<div class="form-group">
+				<label for="">Tanggal</label>
+				<input type="file" name="userfile" size="20" />
+			</div>
+		
+			
+		
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->

@@ -38,7 +38,7 @@
 							<li><a href="<?php echo site_url('home')?>">Home</a></li>
 							<li><a href="<?php echo site_url('home/news')?>">News</a></li>
 							<li><a href="<?php echo site_url('home/about')?>">About</a></li>
-							<li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>		
+							<li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>
 						</ul>
 						<form class="navbar-form navbar-left" role="search">
 							<div class="form-group">
@@ -47,7 +47,7 @@
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#">Link</a></li>
+							<li><a href="<?php echo base_url('home/uploadBaru')?>">Upload Artikel Baru</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 								<ul class="dropdown-menu">
@@ -115,7 +115,13 @@
 		        		$imageUrl = $dirName . $fileName; ?>
 		        		<div class="panel-body"><img src="<?php echo base_url($imageUrl); ?>" class="img-responsive" style='width:100%; height: 200px' alt="Image"></div>
 		        		<div class="panel-footer">Author : <?php echo $key['author'];?></div>
-		        		<input type='submit' name='lihatDetail' value='Lihat' class='btn btn-primary'>
+		        		<HR>
+		        		<center>
+		        			<form action="<?php echo site_url('Home/detail') ?>" method="post">
+		        			<input type="hidden" name="id" value="<?php echo $key['id']?>">
+		        			<button class="btn btn-danger" style="margin-bottom: 10px;">DETAIL</button>
+		        		</form>
+		        		</center>
 		    		</div>
 		    		</div>
 				<?php $increment = $increment + 1;
