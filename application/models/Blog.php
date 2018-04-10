@@ -18,5 +18,22 @@ class Blog extends CI_Model
 	{
 		return $this->db->query(" SELECT * FROM blog WHERE id='".$id."' ")->row();
 	}
+
+	public function getData($key)
+	{
+		$this->db->WHERE("id", $key);
+		$hasil = $this->db->get('judul');
+		return $hasil;
+	}
+
+	public function getUpdate($key, $data)
+	{
+		$this->db->WHERE("id", $key);
+		$this->db->update("judul", $data);
+	}
+
+	public function getInsert($data){
+		$this->db->insert("judul", $data);	
+	}
 }
 ?>

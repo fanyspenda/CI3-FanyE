@@ -35,7 +35,7 @@ class Home extends CI_Controller {
 	public function detail()
 	{
 		$cek = $this->input->post('id');
-		$data['xxx'] = $this->blog->getByID($cek);
+		$data['key'] = $this->blog->getByID($cek);
 		$this->load->view('blog_details', $data);
 		/*echo json_encode($data);*/
 	}
@@ -54,7 +54,20 @@ class Home extends CI_Controller {
 	public function tambah()
 	{
 		$key = $this->input->post("id");
-		
+		$dataBaru['id'] = $this->input->post("id");
+		$dataBaru['author'] = $this->input->post("author");
+		$dataBaru['date'] = $this->input->post("tanggal");
+		$dataBaru['title'] = $this->input->post("judul");
+		$dataBaru['content'] = $this->input->post("isi");
+
+		$query = $this->Blog->getData($key);
+		$query = $this->db->get("judul");
+
+		if($query->num_rows()>0){
+			$this->Blog->getUpdate($key, $dataBaru);
+		}else{
+			$this->Blog->getInsert($dataBaru);
+		}
 	}
 
 	function __construct(){

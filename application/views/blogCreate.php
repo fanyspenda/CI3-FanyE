@@ -66,7 +66,7 @@
 		<h1 class="text-center">Hello World</h1>
 		<!--Beginning of Box-->
 		<!--end of box-->
-		<form action="" method="POST" role="form">
+		<form action="" method="POST" role="form" action="<?php echo base_url('Home/tambah');?>">
 			<legend>FORM TAMBAH DATA</legend>
 		
 			<div class="form-group">
@@ -82,11 +82,16 @@
 				<input type="text" class="form-control" id="author" placeholder="Author" required="required">
 			</div>
 			<div class="form-group">
+				<label for="text-center">Isi Artikel</label>
+				<input type="te" class="form-control" id="isi" placeholder="Author" required="required">
+			</div>
+
+			<div class="form-group">
 				<label for="">Tanggal</label>
 				<input type="date" class="form-control" id="tanggal" placeholder="Tanggal Hari Ini" required="required">
 			</div>
 			<div class="form-group">
-				<label for="">Tanggal</label>
+				<label for="">Gambar</label>
 				<input type="file" name="userfile" size="20" />
 			</div>
 		

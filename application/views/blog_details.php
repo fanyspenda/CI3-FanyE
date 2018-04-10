@@ -102,17 +102,17 @@
 			<div class="row">
 	    		<div class="col-sm-12">
 		    		<div class="panel panel-primary">
-		        		<div class="panel-heading"><?php echo $xxx->title; ?></div>
+		        		<div class="panel-heading"><?php echo $key->title; ?></div>
 				        <div class="panel-body">
 							<?php 
 								$dirName = '/assets/imgDatabase/';
-		        				$fileName = $xxx->image_file;
+		        				$fileName = $key->image_file;
 		        				$imageUrl = $dirName . $fileName; 
 		        			?>
 				        	<img src="<?php echo base_url($imageUrl) ?>" class="img-responsive" style='width:1920px; height: 750px' alt="Image">
 				        </div>
-				        <div class="panel-footer"><?php echo $xxx->author; ?></div>
-				        <div class="panel-footer"><?php echo $xxx->content; ?></div>
+				        <div class="panel-footer"><?php echo $key->author; ?></div>
+				        <div class="panel-footer"><?php echo $key->content; ?></div>
 		      		</div>
 		    	</div>
 			</div>
