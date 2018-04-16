@@ -47,26 +47,42 @@ class Home extends CI_Controller {
 
 	public function uploadBaru()
 	{
-		$data['content']	='blogCreate.php';
-		$this->load->view('blogCreate.php',$data);
+		$this->load->helper('form');
+		$this->load->view('blogCreate.php');
 	}
 
-	public function tambah()
+	public function tambahGambar()
 	{
-		$key = $this->input->post("id");
-		$dataBaru['id'] = $this->input->post("id");
-		$dataBaru['author'] = $this->input->post("author");
-		$dataBaru['date'] = $this->input->post("tanggal");
-		$dataBaru['title'] = $this->input->post("judul");
-		$dataBaru['content'] = $this->input->post("isi");
+		$id = $this->input->post('id');
+		$judul = $this->input->post('judul');
+		$author = $this->input->post('author');
+		$isiArtikel = $this->input->post('isi');
+		$tanggal = $this->input->post('tanggal');
+		$gambar = $_FILES['gambar']['name'];
 
-		$query = $this->Blog->getData($key);
-		$query = $this->db->get("judul");
+		if($gambar=''){}else {
+			$config['upload_path'] = './assets/imgDatabase';
+			$config['allowed_types'] = 'gif|jpg|png';
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload('gambar')){
+				$error = array('error' => $this->upload->display_errors());
+			}
+			else{
+				$gambar = $this->upload->data('file_name');
+			}
 
-		if($query->num_rows()>0){
-			$this->Blog->getUpdate($key, $dataBaru);
-		}else{
-			$this->Blog->getInsert($dataBaru);
+			$data = array(
+				'id' => $id,
+				'title' => $judul,
+				'author' =>$author,
+				'date' => $tanggal,
+				'content' => $isiArtikel,
+				'image_file'=>$gambar);
+
+			$this->blog->insert($data, "blog");
+			redirect('home/blog');
 		}
 	}
 

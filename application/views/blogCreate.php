@@ -66,39 +66,34 @@
 		<h1 class="text-center">Hello World</h1>
 		<!--Beginning of Box-->
 		<!--end of box-->
-		<form action="" method="POST" role="form" action="<?php echo base_url('Home/tambah');?>">
+		<!--beginning of form-->
+		
+			<?php echo form_open_multipart('Home/tambahGambar'); ?>
 			<legend>FORM TAMBAH DATA</legend>
 		
-			<div class="form-group">
-				<label for="">ID</label>
-				<input type="text" class="form-control" id="id" placeholder="ID Artikel" required="required">
-			</div>
-			<div class="form-group">
-				<label for="">Judul Artikel</label>
-				<input type="text" class="form-control" id="judul" placeholder="Judul artikel" required="required">
-			</div>
-			<div class="form-group">
-				<label for="">Author</label>
-				<input type="text" class="form-control" id="author" placeholder="Author" required="required">
-			</div>
-			<div class="form-group">
-				<label for="text-center">Isi Artikel</label>
-				<input type="te" class="form-control" id="isi" placeholder="Author" required="required">
-			</div>
+			<label for="">ID</label>
+			<input type="text" class="form-control" name="id" placeholder="ID Artikel" required="required">
 
-			<div class="form-group">
-				<label for="">Tanggal</label>
-				<input type="date" class="form-control" id="tanggal" placeholder="Tanggal Hari Ini" required="required">
-			</div>
-			<div class="form-group">
-				<label for="">Gambar</label>
-				<input type="file" name="userfile" size="20" />
-			</div>
-		
+			<label for="">Judul Artikel</label>
+			<input type="text" class="form-control" name="judul" placeholder="Judul artikel" required="required">
+
+			<label for="">Author</label>
+			<input type="text" class="form-control" name="author" placeholder="Author" required="required">
+
+			<label for="text-center">Isi Artikel</label>
+			<input type="te" class="form-control" name="isi" placeholder="Author" required="required">
 			
-		
+			<label for="">Tanggal</label>
+			<input type="date" class="form-control" name="tanggal" placeholder="Tanggal Hari Ini" required="required">
+			
+			
+			<label for="">Gambar</label>
+			<input type="file" name="gambar" size="20" />
+					
 			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
+			 <?php echo form_close(); ?>
+	<!-- 	</form> -->
+		<!--end of form-->
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->

@@ -26,14 +26,9 @@ class Blog extends CI_Model
 		return $hasil;
 	}
 
-	public function getUpdate($key, $data)
-	{
-		$this->db->WHERE("id", $key);
-		$this->db->update("judul", $data);
-	}
 
-	public function getInsert($data){
-		$this->db->insert("judul", $data);	
+	public function insert($data, $tabel){
+		$this->db->insert("blog", $data);
 	}
 }
 ?>
