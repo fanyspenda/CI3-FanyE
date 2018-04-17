@@ -119,7 +119,16 @@
 		        		<center>
 		        			<form action="<?php echo site_url('Home/detail') ?>" method="post">
 		        			<input type="hidden" name="id" value="<?php echo $key['id']?>">
-		        			<button class="btn btn-danger" style="margin-bottom: 10px;">DETAIL</button>
+		        			<button class="btn btn-primary" style="margin-bottom: 10px;">DETAIL</button>
+		        		</form>
+		        		<form action="<?php echo site_url('Home/hapus') ?>" method="post">
+		        			<input type="hidden" name="id" value="<?php echo $key['id']?>">
+		        			<input type="hidden" name="namaGambar" value="<?php echo $key['image_file']?>">
+		        			<button class="btn btn-danger" onclick="return confirm('yakin akan menghapus data ini?')" style="margin-bottom: 10px;">HAPUS</button>
+		        		</form>
+		        		<form action="<?php echo site_url('Home/formEdit') ?>" method="post">
+		        			<input type="hidden" name="id" value="<?php echo $key['id']?>">
+		        			<button class="btn btn-success" style="margin-bottom: 10px;">EDIT</button>
 		        		</form>
 		        		</center>
 		    		</div>

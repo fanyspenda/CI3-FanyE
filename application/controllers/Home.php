@@ -40,11 +40,6 @@ class Home extends CI_Controller {
 		/*echo json_encode($data);*/
 	}
 
-	public function tes()
-	{
-		$this->load->view('blog_details');
-	}
-
 	public function uploadBaru()
 	{
 		$this->load->helper('form');
@@ -82,6 +77,70 @@ class Home extends CI_Controller {
 				'image_file'=>$gambar);
 
 			$this->blog->insert($data, "blog");
+			redirect('home/blog');
+		}
+	}
+
+	public function hapus()
+	{
+		$namaGambar = $this->input->post('namaGambar');
+		$id = $this->input->post('id');
+		unlink('assets/imgDatabase/'.$namaGambar);
+		$this->blog->hapus($id);
+		redirect('home/blog');
+	}
+
+	public function formEdit(){
+		$id = $this->input->post('id');
+		$data['key'] = $this->blog->getByID($id);
+		$this->load->helper('form');
+		$this->load->view('blogEdit', $data);
+	}
+
+	public function edit()
+	{
+		$id = $this->input->post('id');
+		$judul = $this->input->post('judul');
+		$author = $this->input->post('author');
+		$isiArtikel = $this->input->post('isi');
+		$tanggal = $this->input->post('tanggal');
+		$radioGambar = $this->input->post('radioGambarBaru');
+		$gambarLama = $this->input->post('gambarLama');
+		$gambarBaru = $_FILES['gambarBaru']['name'];
+
+		if($radioGambar=='ya'){
+			$config['upload_path'] = './assets/imgDatabase';
+			$config['allowed_types'] = 'gif|jpg|png';
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload("gambarBaru")){
+				$error = array('error' => $this->upload->display_errors());
+			}
+			else{
+				$gambarBaru = $this->upload->data('file_name');
+			}
+			$data = array(
+				'id' => $id,
+				'title' => $judul,
+				'author' =>$author,
+				'date' => $tanggal,
+				'content' => $isiArtikel,
+				'image_file'=>$gambarBaru);
+
+			$this->blog->updateWithImage($data);
+			unlink('assets/imgDatabase/'.$gambarLama);
+			redirect('home/blog');
+		}
+		elseif ($radioGambar=='tidak') {
+			$data = array(
+				'id' => $id,
+				'title' => $judul,
+				'author' =>$author,
+				'date' => $tanggal,
+				'content' => $isiArtikel);
+
+			$this->blog->updateWithoutImage($data);
 			redirect('home/blog');
 		}
 	}

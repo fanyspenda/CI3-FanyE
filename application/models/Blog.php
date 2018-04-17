@@ -30,5 +30,25 @@ class Blog extends CI_Model
 	public function insert($data, $tabel){
 		$this->db->insert("blog", $data);
 	}
+
+	public function hapus($id)
+	{
+		$this->db->query("DELETE from blog where id =".$id);
+	}
+
+	public function updateWithImage($data){
+		$this->db->query("update blog set 
+			author='".$data['author']."', date=".$data['date'].",
+			title='".$data['title']."', content='".$data['content']."',
+			image_file='".$data['image_file']."' where id = '".$data['id']."'");
+	}
+
+	public function updateWithoutImage($data)
+	{
+		$this->db->query("update blog set 
+			author='".$data['author']."', date=".$data['date'].",
+			title='".$data['title']."', content='".$data['content']."' 
+			where id = '".$data['id']."'");	
+	}
 }
 ?>
