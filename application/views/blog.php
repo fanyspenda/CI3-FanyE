@@ -39,6 +39,7 @@
 							<li><a href="<?php echo site_url('home/news')?>">News</a></li>
 							<li><a href="<?php echo site_url('home/about')?>">About</a></li>
 							<li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>
+							<li><a href="<?php echo site_url('home/tambahKategori')?>">Tambah Kategori</a></li>
 						</ul>
 						<form class="navbar-form navbar-left" role="search">
 							<div class="form-group">

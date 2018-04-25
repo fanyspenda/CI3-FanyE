@@ -81,7 +81,7 @@
 			<input type="text" class="form-control" name="author" value="<?php echo $key->author ?>" placeholder="Author" required="required">
 
 			<label for="text-center">Isi Artikel</label>
-			<input type="te" class="form-control" name="isi" value="<?php echo $key->content ?>" placeholder="isi" required="required">
+			<textarea class="form-control" name="isi" value="<?php echo $key->content ?>" placeholder="isi" required="required"></textarea>
 			
 			<label for="">Tanggal</label>
 			<input type="date" class="form-control" name="tanggal"  value="<?php echo $key->date ?>" required="required">

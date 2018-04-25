@@ -71,7 +71,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="#">Home</a></li>
+							<li class="active"><a href="home">Home</a></li>
 							<li><a href="<?php echo site_url('home/news')?>">News</a></li>
 							<li><a href="<?php echo site_url('home/about')?>">About</a></li>
 							<li><a href="<?php echo site_url('home/contact')?>">Contact</a></li>		

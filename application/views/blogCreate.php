@@ -81,7 +81,7 @@
 			<input type="text" class="form-control" name="author" placeholder="Author" required="required">
 
 			<label for="text-center">Isi Artikel</label>
-			<input type="te" class="form-control" name="isi" placeholder="Author" required="required">
+			<textarea class="form-control" name="isi" placeholder="Isi Artikel" required="required"></textarea>
 			
 			<label for="">Tanggal</label>
 			<input type="date" class="form-control" name="tanggal" placeholder="Tanggal Hari Ini" required="required">
