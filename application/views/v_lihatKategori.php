@@ -4,17 +4,17 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Blog Fany</title>
+		<title>Daftar Kategori</title>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!--datatable link -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
 
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
 	</head>
 	<body>
 		<!-- Begin of Navbar -->
@@ -71,61 +71,44 @@
 				</div>
 			</nav>
 			<!-- end of navbar-->
-			<!-- begin of Bs3-carousel-->
-			<!--end of bs3 Carousel-->
-		<h1 class="text-center">Hello World</h1>
-		<!--Beginning of Box-->
-		<div class="container">
-			<div class="row">
-		<?php foreach ($blog_load as $key) {
-			$increment = 3;
-				if($increment%3==0){ ?>
-					<div class="container">
-					<div class="row">
-	    			<div class="col-sm-4">
-		    
-		<?php 	} ?>
-					<div class="panel panel-primary">
-		    	    	<div class="panel-heading"><?php echo $key['title']?></div>
-		        		<?php $dirName = '/assets/imgDatabase/';
-		        		$fileName = $key["image_file"];
-		        		$imageUrl = $dirName . $fileName; ?>
-		        		<div class="panel-body"><img src="<?php echo base_url($imageUrl); ?>" class="img-responsive" style='width:100%; height: 200px' alt="Image"></div>
-		        		<div class="panel-footer">Author : <?php echo $key['author'];?></div>
-		        		<HR>
-		        		<center>
-		        			<form action="<?php echo site_url('Home/detail') ?>" method="post">
-		        			<input type="hidden" name="id" value="<?php echo $key['id']?>">
-		        			<button class="btn btn-primary" style="margin-bottom: 10px;">DETAIL</button>
-		        		</form>
-		        		<form action="<?php echo site_url('Home/hapus') ?>" method="post">
-		        			<input type="hidden" name="id" value="<?php echo $key['id']?>">
-		        			<input type="hidden" name="namaGambar" value="<?php echo $key['image_file']?>">
-		        			<button class="btn btn-danger" onclick="return confirm('yakin akan menghapus data ini?')" style="margin-bottom: 10px;">HAPUS</button>
-		        		</form>
-		        		<form action="<?php echo site_url('Home/formEdit') ?>" method="post">
-		        			<input type="hidden" name="id" value="<?php echo $key['id']?>">
-		        			<button class="btn btn-success" style="margin-bottom: 10px;">EDIT</button>
-		        		</form>
-		        		</center>
-		    		</div>
-		    		</div>
-				<?php $increment = $increment + 1;
-			    if($increment%3==0){ ?>
-		    		</div>
-		    		</div>
-			    	<br>
-				<?php } 
-				 ?>
-			<?php } ?>
+			<table class="table table-striped table-bordered data">
+					<thead>
+						<tr>			
+							<th>ID Kategori</th>
+							<th>Nama Kategori</th>
+							<th>Deskripsi</th>
+							<th>Waktu Dibuat</th>
+							<th colspan="2" style="text-align: center;">Aksi</font></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($dataKategori as $key) {?>
+						<tr>				
+							<td><?php echo $key['cat_id']; ?></td>
+							<td><?php echo $key['cat_name']; ?></td>
+							<td><?php echo $key['cat_description']; ?></td>
+							<td><?php echo $key['date_created']; ?></td>
+							<td>
+								<form action="<?php echo base_url('home/keEditKategori')?>" method="post">
+									<input type="hidden" name= "edit" class="form-control" value="<?php echo $key['cat_id']; ?>">
+									<button class="btn btn-warning">Edit</button>
+								</form>
+							</td>
+							<td>
+								<form action="<?php echo base_url('home/hapusKategori')?>" method="post">
+									<input type="hidden" name= "delete" class="form-control" value="<?php echo $key['cat_id']; ?>">
+									<input type="hidden" name= "cat_name" class="form-control" value="<?php echo $key['cat_name']; ?>">
+									<button class="btn btn-danger" onclick="return confirm('yakin akan menghapus kategori <?php echo $key['cat_name']?> ?')">Delete</button>
+								</form>
+							</td>
+						</tr>
+						<?php } ?>
+					</tbody>
+				</table>
 			</div>
-			</div>
-		<!--end of box-->
-		<!-- jQuery -->
+
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
- 		<script src="Hello World"></script>
 	</body>
 </html>

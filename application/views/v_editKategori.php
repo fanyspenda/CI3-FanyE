@@ -10,7 +10,7 @@
 	<main role="main" class="container">
 		<section class="jumbotron text-center">
 			<div class="container">
-				<h1 class="jumbotron-heading">Tambah Kategori</h1>
+				<h1 class="jumbotron-heading">Edit Kategori</h1>
 			</div>
 		</section>
 		<section>
@@ -18,16 +18,21 @@
 				<div class="row">
 					<div class="col-lg-8 offset-lg-2">
 
-						<?php echo form_open( 'home/create', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
+						<?php echo form_open( 'home/editKategori', array('class' => 'needs-validation', 'novalidate' => '') ); ?>
 
 						<div class="form-group">
+							<?php foreach ($detailKat as $key) { ?>
+							<input type="hidden" name="cat_id" value="<?php echo $key['cat_id'] ?>">
+							<input type="hidden" name="cat_name_old" value="<?php echo $key['cat_name'] ?>">
+
 							<label for="cat_name">Nama Kategori</label>
-							<input type="text" class="form-control" name="cat_name" value="<?php echo set_value('cat_name') ?>" required>
+							<input type="text" class="form-control" name="cat_name" value="<?php echo set_value('cat_name', $key['cat_name']) ?>" required>
 						</div>
 						<div class="form-group">
 							<label for="text">Deskripsi</label>
-							<input type="text" class="form-control" name="cat_description" value="<?php echo set_value('cat_description') ?>" required>
+							<input type="text" class="form-control" name="cat_description" value="<?php echo set_value('cat_description', $key['cat_description']) ?>" required>
 						</div>
+						<?php } ?>
 						<button id="submitBtn" type="submit" class="btn btn-primary">Simpan</button>
 					</div>
 				</div>

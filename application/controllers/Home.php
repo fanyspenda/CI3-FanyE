@@ -38,7 +38,45 @@ class Home extends CI_Controller {
 		$this->load->view('v_tambahKategori');
 	}
 
-	public function create() 
+	public function lihatKategori()
+	{
+		$data['dataKategori'] = $this->blog->selectCategory();
+		$this->load->view('v_lihatKategori', $data);
+	}
+
+	public function keEditKategori()
+	{
+		$this->load->helper('form');
+		$idKat = $this->input->post('edit');
+		$data['detailKat'] = $this->blog->getKategoribyID($idKat);
+		$this->load->view('v_editKategori', $data);
+	}
+
+	public function editKategori()
+	{
+		$cat_id = $this->input->post('cat_id');
+		$cat_name = $this->input->post('cat_name');
+		$kategori_lama = $this->input->post('cat_name_old');
+		$cat_description = $this->input->post('cat_description');
+
+		$data = array('cat_name' => $cat_name,
+					'kategori_lama' => $kategori_lama,
+					'cat_description' => $cat_description,
+					'cat_id' => $cat_id);
+
+		$this->blog->editKategori($data);
+		redirect('home/lihatKategori');
+	}
+
+	public function hapusKategori()
+	{
+		$cat_id = $this->input->post('delete');
+		$cat_name = $this->input->post('cat_name');
+		$this->blog->deleteCategory($cat_id, $cat_name);
+		redirect('home/lihatKategori');
+	}
+
+	public function create()
 	{
 		// Judul Halaman
 		$data['page_title'] = 'Buat Kategori Baru';
@@ -79,7 +117,8 @@ class Home extends CI_Controller {
 	public function uploadBaru()
 	{
 		$this->load->helper('form');
-		$this->load->view('blogCreate.php');
+		$data['Kategori'] = $this->blog->selectCategory();
+		$this->load->view('blogCreate.php', $data);
 	}
 
 	public function tambahGambar()
@@ -89,6 +128,7 @@ class Home extends CI_Controller {
 		$author = $this->input->post('author');
 		$isiArtikel = $this->input->post('isi');
 		$tanggal = $this->input->post('tanggal');
+		$kategori = $this->input->post('kategori');
 		$gambar = $_FILES['gambar']['name'];
 
 		if($gambar=''){}else {
@@ -110,6 +150,7 @@ class Home extends CI_Controller {
 				'author' =>$author,
 				'date' => $tanggal,
 				'content' => $isiArtikel,
+				'nama_kategori' => $kategori,
 				'image_file'=>$gambar);
 
 			$this->blog->insert($data, "blog");
@@ -129,6 +170,7 @@ class Home extends CI_Controller {
 	public function formEdit(){
 		$id = $this->input->post('id');
 		$data['key'] = $this->blog->getByID($id);
+		$data['Kategori'] = $this->blog->selectCategory();
 		$this->load->helper('form');
 		$this->load->view('blogEdit', $data);
 	}
@@ -141,6 +183,7 @@ class Home extends CI_Controller {
 		$isiArtikel = $this->input->post('isi');
 		$tanggal = $this->input->post('tanggal');
 		$radioGambar = $this->input->post('radioGambarBaru');
+		$kategori = $this->input->post('kategori');
 		$gambarLama = $this->input->post('gambarLama');
 		$gambarBaru = $_FILES['gambarBaru']['name'];
 
@@ -162,6 +205,7 @@ class Home extends CI_Controller {
 				'author' =>$author,
 				'date' => $tanggal,
 				'content' => $isiArtikel,
+				'nama_kategori' => $kategori,
 				'image_file'=>$gambarBaru);
 
 			$this->blog->updateWithImage($data);
@@ -174,6 +218,7 @@ class Home extends CI_Controller {
 				'title' => $judul,
 				'author' =>$author,
 				'date' => $tanggal,
+				'nama_kategori' => $kategori,
 				'content' => $isiArtikel);
 
 			$this->blog->updateWithoutImage($data);

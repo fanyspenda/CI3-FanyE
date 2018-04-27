@@ -69,7 +69,7 @@
 		<!--beginning of form-->
 		
 			<?php echo form_open_multipart('Home/edit'); ?>
-			<legend>FORM TAMBAH DATA</legend>
+			<legend>FORM EDIT DATA</legend>
 		
 			<label for="">ID</label>
 			<input type="text" class="form-control" name="id" placeholder="ID Artikel" value="<?php echo $key->id ?>" readonly="readonly">
@@ -81,16 +81,29 @@
 			<input type="text" class="form-control" name="author" value="<?php echo $key->author ?>" placeholder="Author" required="required">
 
 			<label for="text-center">Isi Artikel</label>
-			<textarea class="form-control" name="isi" value="<?php echo $key->content ?>" placeholder="isi" required="required"></textarea>
+			<textarea class="form-control" name="isi" placeholder="isi" required="required"><?php echo $key->content ?></textarea>
 			
 			<label for="">Tanggal</label>
 			<input type="date" class="form-control" name="tanggal"  value="<?php echo $key->date ?>" required="required">
 
+			<label for="">Kategori Sekarang:</label>
+			<input type="text" class="form-control" value="<?php echo $key->nama_kategori ?>" disabled>
+			<br><br>
+			
+
+			<label>Kategori Baru: </label>
+			<select name="kategori" required>
+				<?php foreach ($Kategori as $key2) { ?>
+				<option value="<?php echo $key2['cat_name']?>"><?php echo $key2['cat_name']?></option>
+				<?php } ?>
+			</select>
+			<br>
+			<br>
+
 			<label for="">Ubah Gambar?</label>
 			<input type="radio"  name="radioGambarBaru" value="ya" required="required">Ya
 			<input type="radio"  name="radioGambarBaru" value="tidak">Tidak
-			<br>
-			<br>
+			<br><br>
 
 			<input type="hidden" name="gambarLama" value="<?php echo $key->image_file ?>">
 			<label for="">Gambar</label>

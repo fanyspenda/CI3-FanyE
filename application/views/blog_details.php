@@ -113,6 +113,7 @@
 				        </div>
 				        <div class="panel-footer"><?php echo $key->author; ?></div>
 				        <div class="panel-footer"><?php echo $key->content; ?></div>
+				        <div class="panel-footer">Kategori : <?php echo $key->nama_kategori; ?></div>
 		      		</div>
 		    	</div>
 			</div>

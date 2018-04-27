@@ -85,10 +85,22 @@
 			
 			<label for="">Tanggal</label>
 			<input type="date" class="form-control" name="tanggal" placeholder="Tanggal Hari Ini" required="required">
-			
+			<br>
+
+			<label>Kategori</label>
+			<select name="kategori" required>
+				<?php foreach ($Kategori as $key) { ?>
+				<option value="<?php echo $key['cat_name']?>"><?php echo $key['cat_name']?></option>
+				<?php } ?>
+			</select>
+			<br>
+			<br>
 			
 			<label for="">Gambar</label>
 			<input type="file" name="gambar" size="20" />
+
+			<br>
+			<br>
 					
 			<button type="submit" class="btn btn-primary">Submit</button>
 			 <?php echo form_close(); ?>
