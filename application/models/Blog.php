@@ -85,5 +85,28 @@ class Blog extends CI_Model
 			title='".$data['title']."', content='".$data['content']."', nama_kategori = '".$data['nama_kategori']."'
 			where id = '".$data['id']."'");	
 	}
+
+	public function get_all_artikel( $limit, $offset)
+   {
+       // Jika variable $limit ada pada parameter maka kita limit query-nya
+       if ( $limit ) {
+           $this->db->limit($limit, $offset);
+       }
+       // Urutkan berdasar tanggal
+       $this->db->order_by('blog.id', 'DESC');
+      
+       $query = $this->db->get('blog');
+
+       // Return dalam bentuk object
+       return $query->result_array();
+   }
+
+   public function get_total()
+   {
+       // Dapatkan jumlah total artikel
+       return $this->db->count_all("blog");
+   }
+
+
 }
 ?>
