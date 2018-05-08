@@ -93,7 +93,7 @@
 									<li><a href="#">Separated link</a></li>
 								</ul>
 							</li>
-							<li><a href="<?php echo site_url('home/pagination')?>">Blog</a></li>
+							<li><a href="<?php echo site_url('home/blogDatatable')?>">Blog</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div>

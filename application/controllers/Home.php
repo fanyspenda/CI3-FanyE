@@ -255,6 +255,12 @@ class Home extends CI_Controller {
 
 	}
 
+	public function blogDatatable()
+	{
+		$data['all_artikel']=$this->blog->getBlogQueryArray();
+		$this->load->view('blog_datatable', $data);
+	}
+
 	function __construct(){
 		parent::__construct();
 			$this->load->helper('url');
