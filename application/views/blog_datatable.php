@@ -20,6 +20,11 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
 	</head>
 	<body>
+	<?php $data_user = $this->session->userdata('datauser');
+	if($data_user['username']==''){	
+		redirect('user/kelogin');
+	} ?>
+
 		<?php $this->load->view('header'); ?>
 		<h1 class="text-center">DATA ARTIKEL</h1>
 		<div class="container">

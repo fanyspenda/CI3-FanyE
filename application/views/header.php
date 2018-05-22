@@ -24,27 +24,38 @@
 								<li><a href="<?php echo site_url('home/lihatKategori')?>"> Lihat Kategori</a></li>
 							</ul>
 						</li>
-							
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Users<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="<?php echo site_url('user/keadduser')?>">Register User</a></li>
+								<li><a href="<?php echo site_url('user/keviewusers')?>"> Lihat Users</a></li>
+							</ul>
+						</li>							
 					</ul>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="<?php echo base_url('home/uploadBaru')?>">Upload Artikel Baru</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li><a href="#">Separated link</a></li>
-							</ul>
-						</li>
 						<li class="active"><a href="<?php echo site_url('home/blogdatatable')?>">Blog</a></li>
+
+						<?php $data_user = $this->session->userdata('datauser');
+						if($data_user['username']!=''){
+						?>
+							<li><a href="<?php echo site_url('user/logout')?>">Logout</a></li>
+						<?php } else {?>
+							<li><a href="<?php echo site_url('user/kelogin')?>">Login</a></li>
+						<?php } ?>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>
 		</nav>
+
+		<?php if($this->session->flashdata('user_registered')): ?>
+         <?php echo '<div class="alert alert-success" role="alert">'.$this->session->flashdata('user_registered').'</div>'; ?>
+       <?php endif; ?>
+
+       <?php if($this->session->flashdata('login_failed')): ?>
+         <?php echo '<p class="alert alert-danger">'.$this->session->flashdata('login_failed').'</p>'; ?>
+       <?php endif; ?>
+
+        <?php if($this->session->flashdata('user_loggedout')): ?>
+         <?php echo '<p class="alert alert-success">'.$this->session->flashdata('user_loggedout').'</p>'; ?>
+       <?php endif; ?>
