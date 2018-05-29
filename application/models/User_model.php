@@ -14,7 +14,7 @@ class User_model extends CI_Model {
        $result = $this->db->query("SELECT * from users where username = '".$username."' and password = '".$password."'");
 
        if($result->num_rows() == 1){
-           return $result->row(0)->user_id;
+           return $result->result_array();
        } else {
            return false;
        }

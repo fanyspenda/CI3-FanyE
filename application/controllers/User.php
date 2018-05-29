@@ -14,7 +14,17 @@ class User extends CI_Controller {
 
 	public function keAddUser()
 	{
-		$this->load->view('v_tambahUser');
+		$data_user = $this->session->userdata('datauser');
+		if ($data_user['level']==0) {
+
+			$this->session->set_userdata( 'datauser', null );
+			$this->session->set_flashdata('tidakBerhak', 'anda Tidak Berhak Masuk ke Halaman Ini! Sesi Berakhir, login sebagai Admin!');
+			$this->load->view('v_login');
+		}
+
+		else {
+			$this->load->view('v_tambahUser');
+		}
 	}
 
 	public function addUser()
@@ -25,7 +35,7 @@ class User extends CI_Controller {
 				'is_unique' => 'username '.$this->input->post('username').' sudah digunakan'
 			)
 		);
-		$this->form_validation->set_rules('kodepos', 'KodePos', 'required|is_unique[users.username]');
+		$this->form_validation->set_rules('kodepos', 'KodePos', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('confirmPass', 'Konfirmasi Password', 'required|matches[password]');
@@ -64,28 +74,31 @@ class User extends CI_Controller {
 		    $password = md5($this->input->post('password'));
 
 		    // Login user
-		    $user_id = $this->user_model->login($username, $password);
+		    $data['user'] = $this->user_model->login($username, $password);
 
-		    if($user_id){
-		        // Buat session
-		        $user_data = array(
-		            'user_id' => $user_id,
-		            'username' => $username,
-		            'logged_in' => true
-		    	);
+		    foreach ($data['user'] as $key) {
+			    if($key!=false){
+			        // Buat session
+			        $user_data = array(
+			            'user_id' => $key['user_id'],
+			            'username' => $username,
+			            'logged_in' => true,
+			            'level' => $key['level']
+			    	);
 
-		    	$this->session->set_userdata('datauser', $user_data);
 
-		        // Set message
-		        $this->session->set_flashdata('user_loggedin', 'You are now logged in');
+			    	$this->session->set_userdata('datauser', $user_data);
 
-		        redirect('home/blogdatatable');
-		    } else {
-		        // Set message
-		        $this->session->set_flashdata('login_failed', 'Login is invalid');
+			        // Set message
+			        $this->session->set_flashdata('user_loggedin', 'You are now logged in');
+		        	redirect('home/blogdatatable');
+			    } else {
+			        // Set message
+			        $this->session->set_flashdata('login_failed', 'Login is invalid');
 
-		        $this->load->view('v_login');
-		    }
+			        $this->load->view('v_login');
+			    }
+			}
         }
 	}
 
