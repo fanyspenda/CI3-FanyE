@@ -76,30 +76,35 @@ class User extends CI_Controller {
 		    // Login user
 		    $data['user'] = $this->user_model->login($username, $password);
 
-		    foreach ($data['user'] as $key) {
-			    if($key!=false){
-			        // Buat session
-			        $user_data = array(
-			            'user_id' => $key['user_id'],
-			            'username' => $username,
-			            'logged_in' => true,
-			            'level' => $key['level']
-			    	);
+		    if($data['user']!=false){
+			    foreach ($data['user'] as $key) {
+				    if($key!=false){
+				        // Buat session
+				        $user_data = array(
+				            'user_id' => $key['user_id'],
+				            'username' => $username,
+				            'logged_in' => true,
+				            'level' => $key['level']
+				    	);
 
 
-			    	$this->session->set_userdata('datauser', $user_data);
+				    	$this->session->set_userdata('datauser', $user_data);
 
-			        // Set message
-			        $this->session->set_flashdata('user_loggedin', 'You are now logged in');
-		        	redirect('home/blogdatatable');
-			    } else {
-			        // Set message
-			        $this->session->set_flashdata('login_failed', 'Login is invalid');
+				        // Set message
+				        $this->session->set_flashdata('user_loggedin', 'You are now logged in');
+			        	redirect('home/blogdatatable');
+				    } else {
+				        // Set message
+				        $this->session->set_flashdata('login_failed', 'Login is invalid');
 
-			        $this->load->view('v_login');
-			    }
-			}
-        }
+				        $this->load->view('v_login');
+				    }
+				}
+	        } else {
+	        	$this->session->set_flashdata('login_failed', 'Login is invalid');
+				$this->load->view('v_login');
+	        }
+		}
 	}
 
 	public function logout(){
@@ -117,6 +122,46 @@ class User extends CI_Controller {
         $this->session->set_flashdata('user_loggedout', 'Anda sudah log out');
 
         redirect('user/keLogin');
+    }
+
+    public function kelihatuser()
+    {
+    	$data['user']=$this->user_model->lihatSemuaUser();
+    	$this->load->view('v_lihatUser', $data);
+    }
+
+    public function keEditUser()
+    {
+    	$idUser = $this->input->post('edit');
+		$data['detailUser'] = $this->user_model->getUserbyID($idUser);
+		$this->load->view('v_editUser', $data);
+    }
+
+    public function edituser()
+    {
+    	$idUser = $this->input->post('id');
+		$nama = $this->input->post('nama');
+		$kodepos = $this->input->post('kodepos');
+		$email = $this->input->post('email');
+		$username = $this->input->post('username');
+
+		$data = array('nama' => $nama,
+					'kodepos' => $kodepos,
+					'email' => $email,
+					'username' => $username,
+					'user_id' => $idUser
+				);
+
+		$this->user_model->editUser($data);
+		redirect('user/kelihatuser');
+    }
+
+    public function hapusUser()
+    {
+    	$idUser = $this->input->post('id');
+    	$this->user_model->deleteUser($idUser);
+		redirect('user/kelihatuser');
+
     }
 
 }

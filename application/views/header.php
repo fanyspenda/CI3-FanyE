@@ -28,7 +28,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Users<b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="<?php echo site_url('user/keadduser')?>">Register User</a></li>
-								<li><a href="<?php echo site_url('user/keviewusers')?>"> Lihat Users</a></li>
+								<li><a href="<?php echo site_url('user/kelihatuser')?>"> Lihat Users</a></li>
 							</ul>
 						</li>							
 					</ul>

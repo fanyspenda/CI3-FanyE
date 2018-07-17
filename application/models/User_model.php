@@ -20,6 +20,28 @@ class User_model extends CI_Model {
        }
    }
 
+   public function lihatSemuaUser()
+   {
+      $result = $this->db->query("SELECT * from users");
+      return $result->result_array();
+   }
+
+   public function getUserbyID($idUser)
+   {
+      $result = $this->db->query("SELECT * from users where user_id = ".$idUser);
+      return $result->result_array();
+   }
+
+   public function editUser($data)
+   {
+      $query = $this->db->query("UPDATE users set nama = '".$data['nama']."', email = '".$data['email']."', kodepos = '".$data['kodepos']."', username = '".$data['username']."' where user_id = ".$data['user_id']);
+   }
+
+   public function deleteUser($id)
+   {
+     $query = $this->db->query("DELETE From users where user_id = ".$id);
+   }
+
 
 }
 ?>
